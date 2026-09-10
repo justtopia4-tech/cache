@@ -10,7 +10,7 @@ const HTML_CONTENT = `<!DOCTYPE html>
     <title>OSM BY NOPYSOURCE - ACTIVE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -28,6 +28,7 @@ const HTML_CONTENT = `<!DOCTYPE html>
             justify-content: center;
             overflow-x: hidden;
             position: relative;
+            padding: 24px 16px;
         }
 
         /* Ambient Glow Background */
@@ -66,24 +67,24 @@ const HTML_CONTENT = `<!DOCTYPE html>
         .card {
             position: relative;
             z-index: 1;
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(15, 23, 42, 0.75);
             border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 28px;
-            padding: 48px 40px;
-            max-width: 520px;
-            width: 90%;
+            padding: 44px 36px;
+            max-width: 600px;
+            width: 100%;
             text-align: center;
             box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7),
                         0 0 40px -10px rgba(6, 182, 212, 0.15);
-            animation: cardAppear 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: cardAppear 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         @keyframes cardAppear {
             from {
                 opacity: 0;
-                transform: translateY(30px) scale(0.96);
+                transform: translateY(24px) scale(0.97);
             }
             to {
                 opacity: 1;
@@ -95,8 +96,9 @@ const HTML_CONTENT = `<!DOCTYPE html>
         .status-pill {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            padding: 8px 18px;
+            padding: 8px 20px;
             border-radius: 9999px;
             background: rgba(16, 185, 129, 0.1);
             border: 1px solid rgba(16, 185, 129, 0.3);
@@ -105,7 +107,7 @@ const HTML_CONTENT = `<!DOCTYPE html>
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: #10b981;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
         }
 
@@ -113,6 +115,9 @@ const HTML_CONTENT = `<!DOCTYPE html>
             position: relative;
             width: 10px;
             height: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .pulse-dot {
@@ -142,12 +147,13 @@ const HTML_CONTENT = `<!DOCTYPE html>
             font-weight: 800;
             line-height: 1.25;
             letter-spacing: -0.5px;
+            text-align: center;
             background: linear-gradient(135deg, #38bdf8 0%, #818cf8 35%, #c084fc 70%, #38bdf8 100%);
             background-size: 300% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shimmerGradient 6s ease-in-out infinite;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.3));
         }
 
@@ -160,8 +166,9 @@ const HTML_CONTENT = `<!DOCTYPE html>
         .subtitle {
             font-size: 15px;
             color: #94a3b8;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             font-weight: 500;
+            text-align: center;
         }
 
         /* Live Frequency Visualizer */
@@ -170,8 +177,8 @@ const HTML_CONTENT = `<!DOCTYPE html>
             align-items: center;
             justify-content: center;
             gap: 5px;
-            height: 32px;
-            margin-bottom: 30px;
+            height: 28px;
+            margin-bottom: 26px;
         }
 
         .bar {
@@ -182,58 +189,139 @@ const HTML_CONTENT = `<!DOCTYPE html>
         }
 
         .bar:nth-child(1) { height: 12px; animation-delay: 0.1s; }
-        .bar:nth-child(2) { height: 24px; animation-delay: 0.3s; }
-        .bar:nth-child(3) { height: 32px; animation-delay: 0.5s; }
-        .bar:nth-child(4) { height: 18px; animation-delay: 0.2s; }
-        .bar:nth-child(5) { height: 28px; animation-delay: 0.4s; }
-        .bar:nth-child(6) { height: 16px; animation-delay: 0.6s; }
-        .bar:nth-child(7) { height: 26px; animation-delay: 0.25s; }
+        .bar:nth-child(2) { height: 22px; animation-delay: 0.3s; }
+        .bar:nth-child(3) { height: 28px; animation-delay: 0.5s; }
+        .bar:nth-child(4) { height: 16px; animation-delay: 0.2s; }
+        .bar:nth-child(5) { height: 26px; animation-delay: 0.4s; }
+        .bar:nth-child(6) { height: 14px; animation-delay: 0.6s; }
+        .bar:nth-child(7) { height: 24px; animation-delay: 0.25s; }
 
         @keyframes soundWave {
             0% { transform: scaleY(0.3); opacity: 0.5; }
             100% { transform: scaleY(1.1); opacity: 1; }
         }
 
-        /* Status Grid */
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 28px;
+        /* Description Box */
+        .desc-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 22px 24px;
+            margin-bottom: 22px;
+            text-align: center;
         }
 
-        .info-box {
-            background: rgba(30, 41, 59, 0.45);
+        .desc-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.12);
+            padding: 4px 12px;
+            border-radius: 9999px;
+            margin-bottom: 12px;
+        }
+
+        .desc-text {
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.65;
+            text-align: center;
+        }
+
+        .desc-text strong {
+            color: #f8fafc;
+        }
+
+        /* Feature Pillars Row */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .feature-item {
+            background: rgba(15, 23, 42, 0.55);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            padding: 14px;
-            text-align: left;
+            padding: 14px 10px;
+            text-align: center;
             transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .info-box:hover {
+        .feature-item:hover {
             transform: translateY(-2px);
             border-color: rgba(56, 189, 248, 0.3);
         }
 
-        .info-label {
+        .feature-icon {
+            font-size: 20px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .feature-sub {
             font-size: 11px;
+            color: #94a3b8;
+            line-height: 1.3;
+        }
+
+        /* Stats Strip */
+        .stats-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            padding: 12px 16px;
+            margin-bottom: 22px;
+        }
+
+        .stat-col {
+            text-align: center;
+        }
+
+        .stat-lbl {
+            font-size: 10px;
+            font-weight: 700;
+            color: #64748b;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            color: #64748b;
-            font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
-        .info-val {
-            font-size: 13px;
+        .stat-val {
+            font-size: 12px;
             font-family: 'JetBrains Mono', monospace;
-            color: #e2e8f0;
             font-weight: 600;
+            color: #e2e8f0;
         }
 
-        .clock-val {
+        .stat-val.online {
+            color: #10b981;
+        }
+
+        .stat-val.clock {
             color: #38bdf8;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.08);
         }
 
         /* Footer */
@@ -241,17 +329,25 @@ const HTML_CONTENT = `<!DOCTYPE html>
             font-size: 12px;
             color: #475569;
             font-weight: 500;
+            text-align: center;
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 520px) {
             .card {
-                padding: 36px 20px;
+                padding: 32px 20px;
             }
             .brand-title {
                 font-size: 24px;
             }
-            .info-grid {
+            .feature-grid {
                 grid-template-columns: 1fr;
+            }
+            .stats-strip {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .stat-divider {
+                display: none;
             }
         }
     </style>
@@ -261,17 +357,22 @@ const HTML_CONTENT = `<!DOCTYPE html>
     <div class="ambient-glow glow-2"></div>
 
     <div class="card">
-        <div class="status-pill">
-            <span class="pulse-beacon">
-                <span class="pulse-ring"></span>
-                <span class="pulse-dot"></span>
-            </span>
-            <span>SYSTEM ACTIVE</span>
+        <!-- Live Badge -->
+        <div>
+            <div class="status-pill">
+                <span class="pulse-beacon">
+                    <span class="pulse-ring"></span>
+                    <span class="pulse-dot"></span>
+                </span>
+                <span>SYSTEM ACTIVE</span>
+            </div>
         </div>
 
+        <!-- Title & Subtitle -->
         <h1 class="brand-title">OSM BY NOPYSOURCE</h1>
-        <p class="subtitle">High Performance Reverse Proxy & Cache Gateway</p>
+        <p class="subtitle">High Performance Cache & Reverse Proxy Network</p>
 
+        <!-- Live Visualizer -->
         <div class="visualizer">
             <div class="bar"></div>
             <div class="bar"></div>
@@ -282,25 +383,52 @@ const HTML_CONTENT = `<!DOCTYPE html>
             <div class="bar"></div>
         </div>
 
-        <div class="info-grid">
-            <div class="info-box">
-                <div class="info-label">Cache Engine</div>
-                <div class="info-val">In-Memory RAM</div>
+        <!-- Proxy Description -->
+        <div class="desc-card">
+            <span class="desc-tag">Fungsi & Kegunaan</span>
+            <p class="desc-text">
+                Server ini berfungsi sebagai <strong>perantara cerdas (Reverse Proxy)</strong> untuk mempercepat proses pengunduhan file aset & cache game. Seluruh file yang sering diakses disimpan langsung di dalam <strong>RAM Cache</strong> agar pemain dapat mengunduh aset secara instan tanpa membebani server utama, serta dilengkapi dengan <strong>SSL Bypass</strong> untuk mencegah kegagalan unduhan pada perangkat pemain.
+            </p>
+        </div>
+
+        <!-- Feature Pillars -->
+        <div class="feature-grid">
+            <div class="feature-item">
+                <span class="feature-icon">⚡</span>
+                <div class="feature-title">RAM Caching</div>
+                <div class="feature-sub">Akses Instan & Cepat</div>
             </div>
-            <div class="info-box">
-                <div class="info-label">SSL Tunnel</div>
-                <div class="info-val">Bypass Active</div>
+            <div class="feature-item">
+                <span class="feature-icon">🛡️</span>
+                <div class="feature-title">SSL Bypass</div>
+                <div class="feature-sub">Bebas Error Koneksi</div>
             </div>
-            <div class="info-box">
-                <div class="info-label">Network Status</div>
-                <div class="info-val" style="color:#10b981;">● Online</div>
-            </div>
-            <div class="info-box">
-                <div class="info-label">Realtime Clock</div>
-                <div class="info-val clock-val" id="clock">--:--:--</div>
+            <div class="feature-item">
+                <span class="feature-icon">🔒</span>
+                <div class="feature-title">IP Masking</div>
+                <div class="feature-sub">Lindungi Server Asal</div>
             </div>
         </div>
 
+        <!-- System Stats Bar -->
+        <div class="stats-strip">
+            <div class="stat-col">
+                <div class="stat-lbl">Koneksi</div>
+                <div class="stat-val online">● ONLINE</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-col">
+                <div class="stat-lbl">Cache Engine</div>
+                <div class="stat-val">IN-MEMORY</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-col">
+                <div class="stat-lbl">Waktu Server</div>
+                <div class="stat-val clock" id="clock">--:--:--</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
         <div class="footer-note">
             Powered by NopySource • Growtopia Cache Gateway
         </div>
